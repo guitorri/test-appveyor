@@ -8,10 +8,3 @@ os: MinGW
 build:
   verbosity: minimal
   
-# branches to build
-branches:
-
-# whitelist
-only:
-  - master 
-  
