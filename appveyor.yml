@@ -1,0 +1,17 @@
+# version format
+version: 1.0.{build} 
+ 
+# version: 1.0.{build}-{branch}
+
+os: MinGW
+
+build:
+  verbosity: minimal
+  
+# branches to build
+branches:
+
+# whitelist
+only:
+  - master 
+  
