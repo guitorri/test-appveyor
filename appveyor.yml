@@ -12,7 +12,6 @@ build:
 # scripts that run after cloning repository
 install:
   - cinst mingw-get
-  - cinst git
   - set PATH=%PATH%;C:\MinGW\msys\1.0\bin;C:\MinGW\bin
   - mingw-get install mingw-developer-toolkit
   - mingw-get install msys-zip
