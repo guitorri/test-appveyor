@@ -1,17 +1,16 @@
 platform:
- - x64
+  - x64
 environment:
- global:
-   MSYS2_BASEVER: 20150512
-   matrix:
-     - MSYS2_ARCH: x86_64
-
+  global:
+    MSYS2_BASEVER: 20150512
+  matrix:
+    - MSYS2_ARCH: x86_64
+      MSYS2_BITS: 64
+      MSYSTEM: MINGW64
+#    - MSYS2_ARCH: i686
+#      MSYSTEM: MINGW32
+#      MSYS2_BITS: 32
 install:
- - appveyor DownloadFile "http://kent.dl.sourceforge.net/project/msys2/Base/%MSYS2_ARCH%/msys2-base-%MSYS2_ARCH%-%MSYS2_BASEVER%.tar.xz" -FileName "msys2.tar.xz"
- - 7z x msys2.tar.xz
- - 7z x msys2.tar > NUL
- - msys%MSYS2_BITS%\usr\bin\bash -lc "pacman -S automake autoconf libtool m4 make bison flex"
- - msys%MSYS2_BITS%\usr\bin\bash -lc "pacman -S perl perl-XML-LibXML"
- 
-#build_script:
-#  - msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER; PATH=$PATH:/mingw64/bin:/mingw32/bin; exec 0</dev/null; ./autogen.sh --with-uniscribe; make"
+  - appveyor DownloadFile "http://kent.dl.sourceforge.net/project/msys2/Base/%MSYS2_ARCH%/msys2-base-%MSYS2_ARCH%-%MSYS2_BASEVER%.tar.xz" -FileName "msys2.tar.xz"
+  - 7z x msys2.tar.xz
+  - 7z x msys2.tar > NUL
