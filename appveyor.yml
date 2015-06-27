@@ -14,6 +14,11 @@ install:
   - appveyor DownloadFile "http://kent.dl.sourceforge.net/project/msys2/Base/%MSYS2_ARCH%/msys2-base-%MSYS2_ARCH%-%MSYS2_BASEVER%.tar.xz" -FileName "msys2.tar.xz"
   - 7z x msys2.tar.xz
   - 7z x msys2.tar > NUL
+  - msys64\usr\bin\bash -lc "pacman --needed --noconfirm -Sy bash pacman pacman-mirrors msys2-runtime"
+  - msys64\usr\bin\bash -lc "pacman --noconfirm -Suy mingw-w64-x86_64-toolchain"
   - msys64\usr\bin\bash -lc "pacman --noconfirm -Suy automake autoconf libtool m4 make flex bison"
-  
-  - flex --version
+  - msys64\usr\bin\bash -lc "pacman --noconfirm -Suy perl perl-XML-LibXML"
+  #- flex --version
+  #-
+build_script:
+  - msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER; ls -a"
