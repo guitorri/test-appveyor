@@ -1,25 +1,17 @@
-# version format
-version: 1.0.{build} 
- 
-# version: 1.0.{build}-{branch}
+platform:
+ - x64
+environment:
+ global:
+   MSYS2_BASEVER: 20150512
+   matrix:
+     - MSYS2_ARCH: x86_64
 
-os: MinGW
-
-build:
-  verbosity: minimal
-  
-
-# scripts that run after cloning repository
 install:
-  - cinst mingw-get
-  - set PATH=%PATH%;C:\MinGW\msys\1.0\bin;C:\MinGW\bin
-  - mingw-get install mingw-developer-toolkit
-  - mingw-get install msys-zip
-  - mingw-get install msys-unzip
-  - mingw-get install autotools autoconf automake 
-  
-  - g++ --version
-  - flex --version
-  - bison --version
-  - autoconf --version
-  - automake --version
+ - appveyor DownloadFile "http://kent.dl.sourceforge.net/project/msys2/Base/%MSYS2_ARCH%/msys2-base-%MSYS2_ARCH%-%MSYS2_BASEVER%.tar.xz" -FileName "msys2.tar.xz"
+ - 7z x msys2.tar.xz
+ - 7z x msys2.tar > NUL
+ - msys%MSYS2_BITS%\usr\bin\bash -lc "pacman -S automake autoconf libtool m4 make bison flex"
+ - msys%MSYS2_BITS%\usr\bin\bash -lc "pacman -S perl perl-XML-LibXML"
+ 
+#build_script:
+#  - msys64\usr\bin\bash -lc "cd $APPVEYOR_BUILD_FOLDER; PATH=$PATH:/mingw64/bin:/mingw32/bin; exec 0</dev/null; ./autogen.sh --with-uniscribe; make"
