@@ -15,7 +15,7 @@ install:
  - 'echo Starting install at: & time /t'
 
 # Install Strawberry Perl from Chocolatey
- - cinst -y strawberryperl
+ - cinst -y -v strawberryperl
  - path
  - path C:\Strawberry\perl\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\c\bin;%PATH%
  - perl -V
@@ -27,7 +27,7 @@ install:
  - cd adms
  - mkdir cmake_build
  - cd cmake_build
- - cmake .. -DUSE_MAINTAINER_MODE=ON -DCMAKE_VERBOSE_MAKEFILE=ON -G'MinGW Makefiles'
+ - cmake .. -DUSE_MAINTAINER_MODE=ON -DCMAKE_VERBOSE_MAKEFILE=ON -G "MinGW Makefiles"
  - make
 
 
