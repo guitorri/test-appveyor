@@ -32,6 +32,6 @@ install:
  - mkdir cmake_build
  - cd cmake_build
  - cmake .. -DUSE_MAINTAINER_MODE=ON -DCMAKE_VERBOSE_MAKEFILE=ON -G "MinGW Makefiles"
- - make
+ - mingw-make
 
 
