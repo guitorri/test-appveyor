@@ -22,9 +22,9 @@ install:
  #- cpan XML::LibXML  # need to get LibXML?
  - 'echo End intall at: & time /t'
 
- # CMake refuses to generate MinGW Makefiles if sh.exe is in the Path
+ # CMake refuses to generate MinGW Makefiles if sh.exeis in the Path
  - del "%ProgramFiles(x86)%\Git\bin\sh.exe"
- - set PATH=C:\MinGW\msys\1.0\bin;C:\MinGW\bin;%PATH%
+ - set PATH=C:\MinGW\bin;%PATH%
 
  - echo %cd%
  - git clone https://github.com/Qucs/ADMS.git adms
