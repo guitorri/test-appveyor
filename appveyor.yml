@@ -11,7 +11,7 @@ build:
 
 # scripts that run after cloning repository
 install:
-  - choco install mingw-get
+  - choco install -y mingw-get
   - set PATH=%PATH%;C:\MinGW\msys\1.0\bin;C:\MinGW\bin
   #- mingw-get install mingw-developer-toolkit
   #- mingw-get install msys-zip
@@ -31,6 +31,6 @@ install:
       cd /c/projects/test-appveyor/adms;
       mkdir cmake_build;
       cd cmake_build;
-      cmake .. -DCMAKE_VERBOSE_MAKEFILE=ON -G'MSYS Makefiles';
+      cmake .. -DUSE_MAINTAINER_MODE=ON -DCMAKE_VERBOSE_MAKEFILE=ON -G'MSYS Makefiles';
       make;
       "
