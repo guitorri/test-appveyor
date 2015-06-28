@@ -26,6 +26,7 @@ install:
  - del "%ProgramFiles(x86)%\Git\bin\sh.exe"
  - set PATH=C:\MinGW\bin;%PATH%
 
+build_script:
  - echo %cd%
  - git clone https://github.com/Qucs/ADMS.git adms
  - cd adms
@@ -33,5 +34,6 @@ install:
  - cd cmake_build
  - cmake .. -DUSE_MAINTAINER_MODE=ON -DCMAKE_VERBOSE_MAKEFILE=ON -G "MinGW Makefiles"
  - mingw32-make
+ - mingw32-make install
 
 
