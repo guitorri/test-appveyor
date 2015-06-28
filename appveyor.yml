@@ -11,36 +11,23 @@ build:
 
 # scripts that run after cloning repository
 install:
-  #- choco install -y mingw-get
-  - set PATH=%PATH%;C:\MinGW\msys\1.0\bin;C:\MinGW\bin
-  #- mingw-get install mingw-developer-toolkit
-  #- mingw-get install msys-zip
-  #- mingw-get install msys-unzip
-  #- C:\MinGW\bin\mingw-get install autotools autoconf automake
-  - mingw-get install autotools autoconf automake
+ - perl -V
+ - 'echo Starting install at: & time /t'
 
-  - g++ --version
-  - flex --version
-  - bison --version
+# Install Strawberry Perl from Chocolatey
+ - cinst -y strawberryperl
+ - path
+ - path C:\Strawberry\perl\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\c\bin;%PATH%
+ - perl -V
+ #- cpan XML::LibXML  # need to get LibXML?
+ - 'echo End intall at: & time /t'
 
-  - cpanm --quiet --notest XML::LibXML
+ - echo %cd%
+ - git clone https://github.com/Qucs/ADMS.git adms
+ - cd adms
+ - mkdir cmake_build
+ - cd cmake_build
+ - cmake .. -DUSE_MAINTAINER_MODE=ON -DCMAKE_VERBOSE_MAKEFILE=ON -G'MinGW Makefiles'
+ - make
 
-  - echo %cd%
-  - git clone https://github.com/Qucs/ADMS.git adms
-  - cd adms
-  #- C:\MinGW\msys\1.0\bin\sh --login -c "
-  #    echo 'C:\MinGW\ /MinGW' > /etc/fstab;
-  #    cd /c/projects/test-appveyor/adms;
-  #    mkdir cmake_build;
-  #    cd cmake_build;
-  #    cmake .. -DUSE_MAINTAINER_MODE=ON -DCMAKE_VERBOSE_MAKEFILE=ON -G'MSYS Makefiles';
-  #    make;
-  #    "
-  - C:\MinGW\msys\1.0\bin\sh --login -c "
-      echo 'C:\MinGW\ /MinGW' > /etc/fstab;
-      cd /c/projects/test-appveyor/adms;
-      ls;
-      sh ./bootstrap.sh;
-      ./configure --enable-maintainer-mode;
-      make;
-      "
+
