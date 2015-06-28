@@ -23,6 +23,7 @@ install:
   - flex --version
   - bison --version
 
+  - cpanm --quiet --notest XML::LibXML
 
   - echo %cd%
   - git clone https://github.com/Qucs/ADMS.git adms
@@ -38,7 +39,8 @@ install:
   - C:\MinGW\msys\1.0\bin\sh --login -c "
       echo 'C:\MinGW\ /MinGW' > /etc/fstab;
       cd /c/projects/test-appveyor/adms;
-      ./bootstrap.sh;
+      ls;
+      sh ./bootstrap.sh;
       ./configure --enable-maintainer-mode;
       make;
       "
