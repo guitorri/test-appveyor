@@ -22,6 +22,8 @@ install:
  #- cpan XML::LibXML  # need to get LibXML?
  - 'echo End intall at: & time /t'
 
+ - set PATH=%PATH%;C:\MinGW\msys\1.0\bin;C:\MinGW\bin
+
  - echo %cd%
  - git clone https://github.com/Qucs/ADMS.git adms
  - cd adms
