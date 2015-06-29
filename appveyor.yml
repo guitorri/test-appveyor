@@ -39,7 +39,8 @@ install:
   #- if defined QTMOVE move %QTMOVE%
   - dir
   # funny dir name inside appveyor, should be $OUTDIR
-  - move $_14_\bin Qt-4.8.7
+  - move $_14_ Qt-4.8.7
+  - dir
   #- if defined QTSUB set "QTDIR=%CD%\%QTSUB%"
   - set "QTDIR=%CD%\Qt-4.8.7"
   #- if defined QTDOWNLOAD1 (echo [Paths]&& echo Prefix=..) >%QTDIR%\bin\qt.conf
@@ -48,6 +49,7 @@ install:
 
   # finish install
   - set "PATH=%QTDIR%\bin;%PATH%"
+  - path
   - qmake --version
 
 build_script:
