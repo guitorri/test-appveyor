@@ -45,8 +45,8 @@ install:
   - dir
   - cd ..
   #- if defined QTSUB set "QTDIR=%CD%\%QTSUB%"
-  - set "QTDIR=%CD%\Qt-4.8.7"
-  # 
+  - set QTDIR=%CD%\Qt-4.8.7
+  - echo %QTDIR%
   - cmd: (echo [Paths]&& echo Prefix=..) > %QTDIR%\bin\qt.conf
   - cd ..
 
