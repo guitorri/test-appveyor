@@ -32,7 +32,8 @@ install:
   #- if defined QTDOWNLOAD1 curl -kLO %QTDOWNLOAD1%
   - curl -kLO  http://download.qt.io/official_releases/qt/4.8/4.8.7/qt-opensource-windows-x86-mingw482-4.8.7.exe
   #- if defined QTARCHIVE1 7z x %QTARCHIVE1_OPTS% %QTARCHIVE1% >nul
-  - 7z x qt-opensource-windows-x86-mingw482-4.8.7.exe
+  # quiet extract
+  - 7z x qt-opensource-windows-x86-mingw482-4.8.7.exe > nul
 
   # move to payload
   #- if defined QTMOVE move %QTMOVE%
