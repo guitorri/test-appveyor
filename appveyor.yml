@@ -41,8 +41,11 @@ install:
   # funny dir name inside appveyor, should be $OUTDIR
   - move $_14_ Qt-4.8.7
   - dir
+  - cd Qt-4.8.7
+  - dir
+  - cd ..
   #- if defined QTSUB set "QTDIR=%CD%\%QTSUB%"
-  - set "QTDIR=%CD%\Qt-4.8.7"
+  - set "QTDIR=%CD%\Qt-4.8.7\bin"
   #- if defined QTDOWNLOAD1 (echo [Paths]&& echo Prefix=..) >%QTDIR%\bin\qt.conf
   - cd ..
 
