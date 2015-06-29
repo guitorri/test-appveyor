@@ -52,5 +52,18 @@ install:
   - path
   - qmake --version
 
+  # puth Mingw 4.8.2 on the path
+  # Add MinGW to path
+  - path  C:\MinGW\bin;%PATH%
+  - g++ --version
+
+  - git clone https://github.com/Qucs/qucs.git qucs-clone
+  - cd qucs-clone
+  - cd qucs
+  - mkdir cmake_build
+  - cd cmake_build
+  - cmake .. -G "MinGW Makefiles"
+  - mingw32-make
+
 build_script:
   - dir
