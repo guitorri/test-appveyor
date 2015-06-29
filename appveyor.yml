@@ -1,30 +1,47 @@
+
 platform:
   - x64
+
 environment:
-  global:
-    MSYS2_BASEVER: 20150512
+
   matrix:
-    - MSYS2_ARCH: x86_64
-      MSYS2_BITS: 64
-      MSYSTEM: MINGW64
-#    - MSYS2_ARCH: i686
-#      MSYSTEM: MINGW32
-#      MSYS2_BITS: 32
+  - BUILD: Qt4.8.6-x86-mingw482-4.8.7
+
+    QTMOVE: '$OUTDIR\bin 4.8.7-x86-mingw482-4.8.7'
+    QTSUB: '4.8.6-x86-mingw482-4.8.7'
+
+    QTDOWNLOAD1: http://download.qt.io/official_releases/qt/4.8/4.8.7/qt-opensource-windows-x86-mingw482-4.8.7.exe
+    QTARCHIVE1: 'qt-opensource-windows-x86-mingw482-4.8.7.exe'
+    QTARCHIVE1_OPTS: '"-ir!?OUTDIR\*" "-xr!*doc\*" "-xr!*examples\*" "-xr!*demos\*"'
+
 install:
-  - appveyor DownloadFile "http://kent.dl.sourceforge.net/project/msys2/Base/%MSYS2_ARCH%/msys2-base-%MSYS2_ARCH%-%MSYS2_BASEVER%.tar.xz" -FileName "msys2.tar.xz"
-  - 7z x msys2.tar.xz
-  - 7z x msys2.tar > NUL
-  - msys64\msys2_shell.bat
-  - pacman -Sy
-  - pacman --needed --noconfirm -Sy bash pacman pacman-mirrors msys2-runtime
-  - exit
-  - msys64\msys2_shell.bat
-  - pacman -Su
-  #- msys64\usr\bin\bash -lc "pacman --noconfirm -Suy mingw-w64-x86_64-toolchain"
-  #- msys64\usr\bin\bash -lc "pacman --noconfirm -Suy automake autoconf libtool m4 make flex bison"
-  #- msys64\usr\bin\bash -lc "pacman --noconfirm -Suy perl perl-XML-LibXML"
-  #- flex --version
-  #-
+
+  - path
+
+  # fix git\bin bug for cmake mingw generator
+  - set "PATH=%PATH:Git\bin;=Git\cmd;%"
+
+  # prepare Qt install
+  - choco install curl 7zip
+
+  # install Qt
+  - mkdir Qt
+  - cd Qt
+
+  # download and extract
+  - if defined QTDOWNLOAD1 curl -kLO %QTDOWNLOAD1%
+  - if defined QTARCHIVE1 7z x %QTARCHIVE1_OPTS% %QTARCHIVE1% >nul
+
+  # move to payload
+  - if defined QTMOVE move %QTMOVE%
+  - if defined QTSUB set "QTDIR=%CD%\%QTSUB%"
+  - if defined QTDOWNLOAD1 (echo [Paths]&& echo Prefix=..) >%QTDIR%\bin\qt.conf
+  - cd ..
+
+
+  # finish install
+  - set "PATH=%QTDIR%\bin;%PATH%"
+  - qmake --version
+
 build_script:
-  - cd $APPVEYOR_BUILD_FOLDER
-  - dir 
+  - ls
