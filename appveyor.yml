@@ -63,6 +63,8 @@ install:
   # Add MinGW to path
   - path  C:\MinGW\bin;%PATH%
   - g++ --version
+  - flex --version
+  - bison --version
   
   #- git clone https://github.com/Qucs/qucs.git qucs-clone
   
@@ -77,21 +79,32 @@ install:
   #- cd ..
   
   # Build ADMS
-  - curl -kLO http://sourceforge.net/projects/mot-adms/files/adms-source/2.3/adms-2.3.4.tar.gz
-  - 7z x adms-2.3.4.tar.gz > nul
-  - dir
-  - 7z x adms-2.3.4.tar
-  - dir
-  - cd adms-2.3.4
+  # - amds 2.3.4 requires Bison 2.6, 
+  # - adms-master builds fine with 2.4, using master for the moment...
+  
+  # Get strawberryperl to bootstrap ADMS (need XML:LibXML already included)
+  - cinst -y strawberryperl
+  - path C:\Strawberry\perl\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\c\bin;%PATH%
+  
+  #- curl -kLO http://sourceforge.net/projects/mot-adms/files/adms-source/2.3/adms-2.3.4.tar.gz
+  #- 7z x adms-2.3.4.tar.gz > nul
+  #- 7z x adms-2.3.4.tar
+  #- cd adms-2.3.4
+  
+  - git clone https://github.com/Qucs/ADMS.git adms-master
+  - cd adms-master
+  
   - mkdir cmake_build
   - cd cmake_build
-  - cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX="C:\projects\test-appveyor\local\adms"
+  #- cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX="C:\projects\test-appveyor\local\adms"
+  - cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX="C:\projects\test-appveyor\local\adms" -DUSE_MAINTAINER_MODE=ON
   - mingw32-make install
   - cd ..
   - cd ..
   - path C:\projects\test-appveyor\local\adms\bin;%PATH%
   - admsXml -h
   
-  - Build Qucs-core
+  # Build Qucs-core
+  #- cd qucs-clone
 build_script:
   - dir
