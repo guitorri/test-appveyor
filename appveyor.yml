@@ -70,7 +70,7 @@ install:
   - flex --version
   - bison --version
   
-  #- git clone https://github.com/Qucs/qucs.git qucs-clone
+  - git clone https://github.com/Qucs/qucs.git qucs-clone
   
   # Build Qucs-GUI
   #- cd qucs-clone
