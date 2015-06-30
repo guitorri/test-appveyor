@@ -108,6 +108,12 @@ install:
   - path C:\projects\test-appveyor\local\adms\bin;%PATH%
   - admsXml -h
   
+  # get gperf
+  - curl -kLO http://sourceforge.net/projects/gnuwin32/files/gperf/3.0.1/gperf-3.0.1-bin.zip
+  - 7z gperf-3.0.1-bin.zip -o gperf
+  - path %CD%\gperf\bin;%PATH$
+  - gperf --version
+  
   # Build Qucs-core
   - cd qucs-clone
   - cd qucs-core
