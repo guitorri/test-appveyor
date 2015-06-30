@@ -111,7 +111,8 @@ install:
   # get gperf
   - curl -kLO http://sourceforge.net/projects/gnuwin32/files/gperf/3.0.1/gperf-3.0.1-bin.zip
   - 7z x gperf-3.0.1-bin.zip -ogperf
-  - path %CD%\gperf\bin;%PATH$
+  - set PATH="%CD%\gperf\bin;%PATH$"
+  - path
   - gperf --version
   
   # Build Qucs-core
