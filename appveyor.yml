@@ -77,7 +77,8 @@ install:
   #- cd ..
   
   # Build ADMS
-  - 7z x  http://sourceforge.net/projects/mot-adms/files/adms-source/2.3/adms-2.3.4.tar.gz > nul
+  - curl -kLO http://sourceforge.net/projects/mot-adms/files/adms-source/2.3/adms-2.3.4.tar.gz
+  - 7z x adms-2.3.4.tar.gz > nul
   - cd adms-2.3.4
   - mkdir cmake_build
   - cd cmake_build
