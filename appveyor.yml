@@ -63,14 +63,31 @@ install:
   # Add MinGW to path
   - path  C:\MinGW\bin;%PATH%
   - g++ --version
-
+  
   - git clone https://github.com/Qucs/qucs.git qucs-clone
-  - cd qucs-clone
-  - cd qucs
+  
+  # Build Qucs-GUI
+  #- cd qucs-clone
+  #- cd qucs
+  #- mkdir cmake_build
+  #- cd cmake_build
+  #- cmake .. -G "MinGW Makefiles"
+  #- mingw32-make
+  #- cd ..
+  #- cd ..
+  
+  # Build ADMS
+  - 7z x  http://sourceforge.net/projects/mot-adms/files/adms-source/2.3/adms-2.3.4.tar.gz > nul
+  - cd adms-2.3.4
   - mkdir cmake_build
   - cd cmake_build
-  - cmake .. -G "MinGW Makefiles"
-  - mingw32-make
-
+  - cmake .. -G "MinGW Makefiles" -DCMAKE_INSTALL_PREFIX="C:\projects\test-appveyor\local\adms"
+  - mingw32-make install
+  - cd ..
+  - cd ..
+  - path C:\projects\test-appveyor\local\adms\bin;%PATH%
+  - admsXml -h
+  
+  - Build Qucs-core
 build_script:
   - dir
