@@ -125,7 +125,8 @@ install:
   - cd qucs-core
   - mkdir cmake_build
   - cd cmake_build
-  - cmake .. -G "MinGW Makefiles"
+  # bison search bug on windows, see https://github.com/Qucs/qucs/commit/7002480b8239aef6b511f7c67ef818e8554fda84
+  - cmake .. -G "MinGW Makefiles" -DBISON_DIR="C:\Program Files (x86)\Git\bin\bison.exe"
   - mingw32-make
   - cd ..
   - cd ..
