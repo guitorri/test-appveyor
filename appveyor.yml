@@ -1,4 +1,6 @@
 
+os: MinGW
+
 platform:
   - x64
 
