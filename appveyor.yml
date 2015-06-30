@@ -20,8 +20,10 @@ install:
 
   - path
 
-  # fix git\bin bug for cmake mingw generator
-  - set "PATH=%PATH:Git\bin;=Git\cmd;%"
+  # fix git\bin bug for cmake mingw generator, sh.exe cannot be on the path
+  # git has flex/bison
+  #- set "PATH=%PATH:Git\bin;=Git\cmd;%"
+  - del "%ProgramFiles(x86)%\Git\bin\sh.exe"
 
   # prepare Qt install
   - choco install -y curl 7zip
