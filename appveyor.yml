@@ -1,5 +1,5 @@
 
-os: MinGW
+
 
 platform:
   - x64
@@ -108,13 +108,17 @@ install:
   - path C:\projects\test-appveyor\local\adms\bin;%PATH%
   - admsXml -h
   
+  - cmake --version
+  
   # get gperf
   - curl -kLO http://sourceforge.net/projects/gnuwin32/files/gperf/3.0.1/gperf-3.0.1-bin.zip
   - 7z x gperf-3.0.1-bin.zip -ogperf
   - dir
-  - set PATH="%CD%\gperf\bin;%PATH%"
+  - set PATH="%PATH%;%CD%\gperf\bin"
   - path
   #- gperf\bin\gperf.exe --version
+  
+  - cmake --version
   
   # Build Qucs-core
   - cd qucs-clone
