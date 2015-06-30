@@ -64,7 +64,7 @@ install:
   - path  C:\MinGW\bin;%PATH%
   - g++ --version
   
-  - git clone https://github.com/Qucs/qucs.git qucs-clone
+  #- git clone https://github.com/Qucs/qucs.git qucs-clone
   
   # Build Qucs-GUI
   #- cd qucs-clone
@@ -79,6 +79,7 @@ install:
   # Build ADMS
   - curl -kLO http://sourceforge.net/projects/mot-adms/files/adms-source/2.3/adms-2.3.4.tar.gz
   - 7z x adms-2.3.4.tar.gz > nul
+  - dir
   - cd adms-2.3.4
   - mkdir cmake_build
   - cd cmake_build
