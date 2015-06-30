@@ -107,6 +107,14 @@ install:
   - admsXml -h
   
   # Build Qucs-core
-  #- cd qucs-clone
+  - cd qucs-clone
+  - cd qucs-core
+  - mkdir cmake_build
+  - cd cmake_build
+  - cmake .. -G "MinGW Makefiles"
+  - mingw32-make
+  - cd ..
+  - cd ..
+  
 build_script:
   - dir
